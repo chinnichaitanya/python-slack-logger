@@ -24,7 +24,7 @@ def fields_block(fields=None):
     _fields = list()
     if fields is not None:
         for key, value in fields.items():
-            _field_text = bold(key + ":") + "\n" + value
+            _field_text = bold(key + ":") + " " + value
             _field_item = {
                 "type": "mrkdwn",
                 "text": _field_text,
