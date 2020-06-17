@@ -21,7 +21,7 @@ class SlackLogger:
         "success": "#21BA45",
     }
 
-    def __init__(self, token, channel, **kwargs):
+    def __init__(self, token, **kwargs):
         if token is None:
             raise ValueError("The field token cannot be:", token)
         self.token = str(token)
