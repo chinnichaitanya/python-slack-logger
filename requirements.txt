@@ -1,1 +1,5 @@
 slackclient == 2.7.1
+pyyaml == 5.3.1
+pre-commit == 2.4.0
+black == 19.10b0
+flake8 == 3.8.1
