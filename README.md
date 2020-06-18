@@ -1,6 +1,17 @@
 # Python Slack Logger
 
 A custom message logger to Slack for Python 3+.
+This project was built using [`slackclient`](https://github.com/slackapi/python-slackclient)
+and the latest [Block Kit UI](https://api.slack.com/block-kit).
+
+This is the Slack alternative to [`discord-logger`](https://github.com/chinnichaitanya/python-discord-logger) package for Discord.
+
+<a href="https://pypi.org/project/python-slack-logger/"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/python-slack-logger"></a>
+[![PyPI version](https://badge.fury.io/py/python-slack-logger.svg)](https://badge.fury.io/py/python-slack-logger)
+<a href="https://pepy.tech/project/python-slack-logger"><img alt="Downloads" src="https://static.pepy.tech/badge/python-slack-logger"></a>
+<a href="https://pypi.org/project/python-slack-logger/#files"><img alt="PyPI - Wheel" src="https://img.shields.io/pypi/wheel/python-slack-logger"></a>
+[![License: MIT](https://img.shields.io/pypi/l/python-slack-logger)](https://github.com/chinnichaitanya/python-slack-logger/blob/master/LICENSE)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
 
 ## Install
 
