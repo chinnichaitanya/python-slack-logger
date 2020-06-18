@@ -77,16 +77,22 @@ class SlackLogger:
         return _block
 
     def _construct_environment_block(self):
-        fields = {
-            "Service": self.service_name,
-            "Environment": self.service_environment,
-            "Host": self.host_name,
-        }
+        fields = {"Service": self.service_name, "Host": self.host_name}
+        if self.service_environment is not None:
+            fields.update({"Environment": self.service_environment})
 
         _block = fields_block(fields=fields)
         return _block
 
-    def send(self, channel, title=None, description=None, level=None, error=None, metadata=None):
+    def send(
+        self,
+        channel,
+        title=None,
+        description=None,
+        level=None,
+        error=None,
+        metadata=None,
+    ):
         if channel is None:
             raise ValueError("The field channel cannot be:", channel)
         _channel = str(channel)
@@ -133,13 +139,8 @@ class SlackLogger:
         _blocks.append(_environment_block)
 
         payload = {
-            "channel": channel,
-            "attachments": [
-                {
-                    "color": _color,
-                    "blocks": _blocks,
-                },
-            ]
+            "channel": _channel,
+            "attachments": [{"color": _color, "blocks": _blocks}],
         }
 
         response = self.slack.chat_postMessage(**payload)
