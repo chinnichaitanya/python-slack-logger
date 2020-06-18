@@ -20,6 +20,15 @@ class SlackLogger:
         "debug": "#2185D0",
         "success": "#21BA45",
     }
+    EMOJIS = {
+        "default": ":mega:",
+        "error": ":x:",
+        "warn": ":warning:",
+        "info": ":bell:",
+        "verbose": ":loud_sound:",
+        "debug": ":microscope:",
+        "success": ":rocket:",
+    }
 
     def __init__(self, token, **kwargs):
         if token is None:
@@ -48,10 +57,16 @@ class SlackLogger:
         _block = mrkdwn_block(_heading)
         return _block
 
-    def _construct_title_block(self, title=None):
+    def _construct_title_block(self, title=None, level=None):
+        _emoji = None
+        if level is not None:
+            _emoji = self.EMOJIS.get(level)
+
         _title = ""
         if title is not None:
             _title = bold(title)
+        if _emoji is not None:
+            _title = _emoji + " " + _title
 
         _block = mrkdwn_block(_title)
         return _block
@@ -79,7 +94,9 @@ class SlackLogger:
                 metadata, indent=4, default_flow_style=False, sort_keys=False
             )
 
-        _block = mrkdwn_block(bold("Metadata:") + "\n" + code(_metadata))
+        _block = mrkdwn_block(
+            ":house_buildings: " + bold("Metadata:") + "\n" + code(_metadata)
+        )
         return _block
 
     def _construct_environment_block(self):
@@ -114,6 +131,8 @@ class SlackLogger:
         _level = level
         if _level is None:
             _level = self.default_level
+        if error is not None:
+            _level = "error"
         _color = self.COLORS.get(_level)
 
         # The final list of all the blocks to be sent in the notification
@@ -122,15 +141,13 @@ class SlackLogger:
         _heading_block = self._construct_heading_block()
         _blocks.append(_heading_block)
 
-        _title_block = self._construct_title_block(_title)
+        _title_block = self._construct_title_block(_title, _level)
         _blocks.append(_title_block)
 
         _description_block = self._construct_description_block(_description)
         _blocks.append(_description_block)
 
         if error is not None:
-            _color = self.COLORS.get("error")
-
             # _blocks.append(divider_block())
 
             _error_block = self._construct_error_block(error)
