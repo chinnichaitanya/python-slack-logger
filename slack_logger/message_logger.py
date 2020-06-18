@@ -42,6 +42,12 @@ class SlackLogger:
 
         self.slack = slack.WebClient(token=self.token)
 
+    def _construct_heading_block(self):
+        _heading = "<!channel>"
+
+        _block = mrkdwn_block(_heading)
+        return _block
+
     def _construct_title_block(self, title=None):
         _title = ""
         if title is not None:
@@ -112,6 +118,9 @@ class SlackLogger:
 
         # The final list of all the blocks to be sent in the notification
         _blocks = list()
+
+        _heading_block = self._construct_heading_block()
+        _blocks.append(_heading_block)
 
         _title_block = self._construct_title_block(_title)
         _blocks.append(_title_block)
