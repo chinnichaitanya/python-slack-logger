@@ -116,13 +116,13 @@ class SlackLogger:
         if error is not None:
             _color = self.COLORS.get("error")
 
-            _blocks.append(divider_block())
+            # _blocks.append(divider_block())
 
             _error_block = self._construct_error_block(error)
             _blocks.append(_error_block)
 
         if metadata is not None:
-            _blocks.append(divider_block())
+            # _blocks.append(divider_block())
 
             _metadata_block = self._construct_metadata_block(metadata)
             _blocks.append(_metadata_block)
@@ -138,7 +138,7 @@ class SlackLogger:
                 {
                     "color": _color,
                     "blocks": _blocks,
-                }
+                },
             ]
         }
 
