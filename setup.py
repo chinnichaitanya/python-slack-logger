@@ -4,7 +4,7 @@ with open("README.md", mode="r") as fd:
     long_description = fd.read()
 
 setuptools.setup(
-    name="slack-logger",
+    name="python-slack-logger",
     version="0.9.0",
     author="Chaitanya Chinni",
     description="Slack Logger is a custom message logger to Slack for Python 3+",
