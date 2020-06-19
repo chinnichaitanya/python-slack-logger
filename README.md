@@ -73,6 +73,20 @@ options = {
 }
 ```
 
+## Emojis inbuilt! 😀
+
+An appropriate emoji is automatically added before the title depending on the `level`.
+
+Following is the map between `level` and the emoji added.
+
+ - default = `:mega:` 📣
+ - error = `:x:` ❌
+ - warn = `:warning:` ⚠️
+ - info = `:bell:` 🔔
+ - verbose = `:loud_sound:` 🔊
+ - debug = `:microscope:` 🔬
+ - success = `:rocket:` 🚀
+
 ## Examples
 
 ### Set Service Name and Environment for easy identification
