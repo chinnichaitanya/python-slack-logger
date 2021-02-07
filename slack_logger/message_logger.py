@@ -44,6 +44,8 @@ class SlackLogger:
             self.service_environment = str(self.service_environment)
 
         self.host_name = gethostname()
+        if kwargs.get("display_hostname") is False:
+            self.host_name = None
 
         self.default_level = kwargs.get("default_level")
         if self.default_level not in self.COLORS.keys():
@@ -100,7 +102,13 @@ class SlackLogger:
         return _block
 
     def _construct_environment_block(self):
-        fields = {"Service": self.service_name, "Host": self.host_name}
+        fields = {"Service": self.service_name}
+        if self.host_name is not None:
+            fields.update(
+                {
+                    "Host": self.host_name,
+                }
+            )
         if self.service_environment is not None:
             fields.update({"Environment": self.service_environment})
 
