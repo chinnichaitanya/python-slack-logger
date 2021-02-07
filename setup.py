@@ -26,4 +26,14 @@ setuptools.setup(
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
     ],
     python_requires=">=3.5",
+    keywords=[
+        "monitoring",
+        "slack",
+        "messaging",
+        "logging",
+        "health-check",
+        "notification-service",
+        "notification",
+        "slack-api",
+    ],
 )
