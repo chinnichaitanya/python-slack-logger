@@ -1,6 +1,6 @@
 # Python Slack Logger
 
-A custom message logger to Slack for Python 3+.
+A custom message logger to Slack for Python 3.
 This project was built using [`slackclient`](https://github.com/slackapi/python-slackclient)
 and the latest [Block Kit UI](https://api.slack.com/block-kit).
 
@@ -26,6 +26,7 @@ token = "your slack app token"
 options = {
     "service_name": "Backend API",
     "service_environment": "Production",
+    "display_hostname": True,
     "default_level": "info",
 }
 
@@ -57,6 +58,10 @@ options = {
     # If unset, this block would not appear in the message
     "service_environment": "Production",
 
+    # An option to specify whether or not to display the hostname in the messages
+    # The hostname is set by default, but it could be disabled by specifically setting this to `False`
+    "display_hostname": True,
+
     # The default importance level of the message
     # The left bar color of the message would change depending on this
     # Available options are
@@ -79,13 +84,13 @@ An appropriate emoji is automatically added before the title depending on the `l
 
 Following is the map between `level` and the emoji added.
 
- - default = `:mega:` 📣
- - error = `:x:` ❌
- - warn = `:warning:` ⚠️
- - info = `:bell:` 🔔
- - verbose = `:loud_sound:` 🔊
- - debug = `:microscope:` 🔬
- - success = `:rocket:` 🚀
+- default = `:mega:` 📣
+- error = `:x:` ❌
+- warn = `:warning:` ⚠️
+- info = `:bell:` 🔔
+- verbose = `:loud_sound:` 🔊
+- debug = `:microscope:` 🔬
+- success = `:rocket:` 🚀
 
 ## Examples
 
@@ -120,6 +125,33 @@ response = logger.send(
 ```
 
 ![Image](https://raw.githubusercontent.com/chinnichaitanya/python-slack-logger/master/images/error_message.png "Message with Service Name, Icon and Environment")
+
+### Send messages without Hostname
+
+In case you do not want the hostname to be displayed in the message, disable it by setting `"display_hostname": False` in the `options` as follows.
+
+```python
+from slack_logger import SlackLogger
+
+token = "your slack app token"
+options = {
+    "service_name": "Backend API",
+    "service_environment": "Production",
+    "display_hostname": False,
+    "default_level": "info",
+}
+
+logger = SlackLogger(token=token, **options)
+
+channel = "#my_channel"
+response = logger.send(
+    channel=channel,
+    title="Health Check",
+    description="All services are running normally!",
+)
+```
+
+![Image](https://raw.githubusercontent.com/chinnichaitanya/python-slack-logger/master/images/basic_message_without_hostname.png "Basic message without Hostname")
 
 ### Send messages with different log-levels
 
