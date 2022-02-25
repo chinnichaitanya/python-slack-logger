@@ -123,6 +123,7 @@ class SlackLogger:
         level=None,
         error=None,
         metadata=None,
+        tag_channel=True,
     ):
         if channel is None:
             raise ValueError("The field channel cannot be:", channel)
@@ -146,8 +147,9 @@ class SlackLogger:
         # The final list of all the blocks to be sent in the notification
         _blocks = list()
 
-        _heading_block = self._construct_heading_block()
-        _blocks.append(_heading_block)
+        if tag_channel:
+            _heading_block = self._construct_heading_block()
+            _blocks.append(_heading_block)
 
         _title_block = self._construct_title_block(_title, _level)
         _blocks.append(_title_block)
