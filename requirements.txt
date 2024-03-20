@@ -1,5 +1,5 @@
 slackclient == 2.9.3
 pyyaml == 5.4.1
 pre-commit == 2.13.0
-black == 21.5b1
+black == 24.3.0
 flake8 == 3.9.2
